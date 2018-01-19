@@ -40,7 +40,7 @@
         </dependency>
     </dependencies>
     <build>
-        <finalName>hadoop-examples</finalName>
+        <finalName>hadoop-Weather-Data</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

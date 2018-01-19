@@ -10,6 +10,10 @@ public class MaxTemperatureMapper
 
     private static final int MISSING = 9999;
 
+    enum Temperature {
+        OVER_100;
+    }
+
     @Override
     public void map (LongWritable key, Text value, Context context)
         throws IOException, InterruptedException{
@@ -24,6 +28,11 @@ public class MaxTemperatureMapper
         }
         String quality = line.substring(92, 93);
         if(temperature != MISSING && quality.matches("[01459]")) {
+            if(temperature >= 1000) {
+                System.err.println("Temperature over 100 degrees for input " + value );
+                context.setStatus("Detected possible corrupt record, see logs");
+                context.getCounter(Temperature.OVER_100).increment(1);
+            }
             context.write(new Text(year), new IntWritable(temperature));
         }
     }

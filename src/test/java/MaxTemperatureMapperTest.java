@@ -1,6 +1,5 @@
 import java.io.IOException;
 import java.util.Arrays;
-
 import org.apache.hadoop.io.*;
 import org.apache.hadoop.mrunit.ReduceDriver;
 import org.apache.hadoop.mrunit.mapreduce.MapDriver;
